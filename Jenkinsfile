@@ -1,11 +1,14 @@
 pipeline {
-    agent {
-        any { image 'node:18.16.0-alpine' }
-    }
+    agent any
     stages {
         stage('Test') {
+            stage {
+                any{
+                    image "docker:dind"
+                }
+            }
             steps {
-                sh 'node --version'
+                sh 'docker -v'
             }
         }
     }
