@@ -1,26 +1,11 @@
-// Declarative //
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:18.16.0-alpine' }
+    }
     stages {
-        stage('Build') {
-            agent {
-                docker {
-                    image "docker:dind"
-                }
-            }
-            steps {
-                docker -v
-                echo 'Building..'
-            }
-        }
         stage('Test') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                sh 'node --version'
             }
         }
     }
