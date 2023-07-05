@@ -1,14 +1,15 @@
 // Declarative //
 pipeline {
-    agent {
-        docker{
-            image "docker:dind"
-        }
-    }
-
+    agent any
     stages {
         stage('Build') {
+            agent {
+                docker {
+                    image "docker:dind"
+                }
+            }
             steps {
+                docker -v
                 echo 'Building..'
             }
         }
